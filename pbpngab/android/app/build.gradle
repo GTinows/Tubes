@@ -1,0 +1,41 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // Flutter Gradle Plugin harus berada di bawah Android dan Kotlin plugin.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.nyobadoang"
+    compileSdk = Integer.parseInt(flutter.compileSdkVersion) // Pastikan flutter.compileSdkVersion berupa angka
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.nyobadoang" // Gunakan Application ID unik
+        minSdk = Integer.parseInt(flutter.minSdkVersion) // Pastikan versi berupa angka
+        targetSdk = Integer.parseInt(flutter.targetSdkVersion)
+        versionCode = Integer.parseInt(flutter.versionCode)
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Debug keys hanya untuk testing
+            minifyEnabled false // Nonaktifkan ProGuard untuk debugging
+            shrinkResources false // Nonaktifkan shrinking resources
+        }
+    }
+}
+
+flutter {
+    source = "../.." // Lokasi proyek Flutter
+}
